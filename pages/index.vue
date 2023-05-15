@@ -1,21 +1,37 @@
-<!-- reactive -->
 <template>
-  <div>{{ state.count }}</div>
-  <div>{{ state.doubled }}</div>
+  <ul>
+    <li v-for="(item, index) in products" :key="index">
+      {{ item.name }}
+    </li>
+  </ul>
 </template>
 
-<script setup>
-const state = reactive({
-  count: 1,
-  doubled: computed(() => state.count * 2),
-});
+<script lang="ts" setup>
+import type { ProductResponse } from "~/types";
+const query = gql`
+  query {
+    getProducts {
+      id
+      name
+      price
+      description
+      category {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      productImages {
+        id
+        imageUrl
+        isMain
+      }
+    }
+  }
+`;
 
-const set = new Set(["apple", "banana", "orange"]);
+const { data } = await useAsyncQuery<ProductResponse>(query);
 
-// set 값 순회
-set.forEach((val, val2, set) => {
-  console.log(val, val2, set);
-});
-
-console.log(state.count); // 1
+const products = data?.value?.getProducts;
+console.log(products);
 </script>

@@ -9,11 +9,11 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@nuxtjs/apollo": "^5.0.0-alpha.6",
     "@types/node": "^18",
     "nuxt": "^3.4.3"
   },
   "dependencies": {
-    "@nuxtjs/apollo": "^4.0.1-rc.5",
     "@nuxtjs/tailwindcss": "^6.6.8",
     "@pinia/nuxt": "^0.4.10"
   }
