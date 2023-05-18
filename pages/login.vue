@@ -7,16 +7,14 @@ import type { UserLoginResponse } from "~/types";
 
 const query = gql`
   mutation {
-    getUser(
-      loginUserRequest: { email: "sunghe1016@naver.com", password: "1234" }
-    ) {
+    getUser(loginUserRequest: { email: "sunghe1016@naver.com", password: "1234" }) {
       userId
       jwtToken
     }
   }
 `;
 
-const { data } = await useMutation<UserLoginResponse>(query);
+const data = useMutation<UserLoginResponse>(query);
 
-console.log(data);
+console.log(data.loading);
 </script>

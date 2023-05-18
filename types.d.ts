@@ -24,7 +24,11 @@ export type ProductResponse = {
   getProducts: Product[];
 };
 
-export type UserLoginResponse = {
+type UserLogin = {
   userId: Number;
   jwtToken: String;
+};
+
+export type UserLoginResponse = {
+  getUser: UserLogin[];
 };
