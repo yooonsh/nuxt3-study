@@ -3,18 +3,13 @@
 </template>
 
 <script lang="ts" setup>
-import type { UserLoginResponse } from "~/types";
+const { $api }: any = useNuxtApp();
 
-const query = gql`
-  mutation {
-    getUser(loginUserRequest: { email: "sunghe1016@naver.com", password: "1234" }) {
-      userId
-      jwtToken
-    }
-  }
-`;
+const variables = {
+  email: "sunghe1016@naver.com",
+  password: "1234",
+};
 
-const data = useMutation<UserLoginResponse>(query);
-
-console.log(data.loading);
+const { data: loginData } = await $api.login(variables);
+console.log(loginData.login);
 </script>

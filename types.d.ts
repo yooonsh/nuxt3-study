@@ -30,5 +30,8 @@ type UserLogin = {
 };
 
 export type UserLoginResponse = {
-  getUser: UserLogin[];
+  login: {
+    userId: Number;
+    jwtToken: String;
+  };
 };

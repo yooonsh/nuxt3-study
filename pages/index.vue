@@ -8,35 +8,9 @@
 </template>
 
 <script lang="ts" setup>
-import type { ProductResponse } from "~/types";
-import type { client } from "~/utils/query";
+const { $api }: any = useNuxtApp();
+const data = ref();
+data.value = await $api.getProduct();
 
-// console.log(client.query.getProduct);
-
-const query = gql`
-  query {
-    getProducts {
-      id
-      name
-      price
-      description
-      category {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      productImages {
-        id
-        imageUrl
-        isMain
-      }
-    }
-  }
-`;
-
-const { data } = await useAsyncQuery<ProductResponse>(query);
-
-const products = data?.value?.getProducts;
-console.log(products);
+const products = data.value.value.getProducts;
 </script>
