@@ -21,6 +21,18 @@ export const client = {
         }
       }
     `,
+    getOneProduct: gql`
+      query {
+        getOneProduct(productId: 41) {
+          id
+          name
+          price
+          description
+          category
+          productImages
+        }
+      }
+    `,
   },
   mutate: {
     login: gql`
@@ -33,7 +45,14 @@ export const client = {
     `,
     signUp: gql`
       mutation signUp($email: String!, $password: String!, $name: String!) {
-        signup(createUserRequest: { email: $email, password: $password, name: $name, userType: "GUEST" }) {
+        signup(
+          createUserRequest: {
+            email: $email
+            password: $password
+            name: $name
+            userType: "GUEST"
+          }
+        ) {
           id
           email
           name

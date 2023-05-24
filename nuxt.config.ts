@@ -1,7 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/apollo"],
+  modules: ["@nuxtjs/apollo", "nuxt-headlessui"],
+
+  headlessui: {
+    prefix: "Headless",
+  },
 
   apollo: {
     clients: {
@@ -14,4 +18,13 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
+
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
+
+  css: ["@/assets/css/main.css"],
 });

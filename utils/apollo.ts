@@ -39,8 +39,10 @@ export default class Apollo {
   }
   async getProduct() {
     const { data } = await useAsyncQuery<Product>(client.query.getProduct);
-
-    // return await useAsyncQuery<Product>(client.query.getProduct);
+    return data;
+  }
+  async getOneProduct() {
+    const { data } = await useAsyncQuery<Product>(client.query.getOneProduct);
     return data;
   }
 }

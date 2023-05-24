@@ -11,5 +11,5 @@ const variables = {
 };
 
 const { data: loginData } = await $api.login(variables);
-console.log(loginData.login);
+console.log(loginData.login.jwtToken);
 </script>
