@@ -27,6 +27,10 @@ interface SignUpInput {
   password: string;
   name: string;
 }
+interface updateProduct {
+  productId: number;
+  request: { name: string; price: number; description: string };
+}
 
 export default class Apollo {
   async login(variables: LoginInput) {
@@ -35,6 +39,10 @@ export default class Apollo {
   }
   async signUp(variables: SignUpInput) {
     const { mutate } = useMutation(client.mutate.signUp, { variables });
+    return await mutate();
+  }
+  async updateProduct(variables: updateProduct) {
+    const { mutate } = useMutation(client.mutate.updateProduct, { variables });
     return await mutate();
   }
   async getProduct() {

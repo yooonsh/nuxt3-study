@@ -60,5 +60,34 @@ export const client = {
         }
       }
     `,
+    updateProduct: gql`
+      mutation UpdateProduct(
+        $productId: Float!
+        $name: String!
+        $price: Float!
+        $description: String!
+      ) {
+        updateProduct(
+          productId: $productId
+          request: { name: $name, price: $price, description: $description }
+        ) {
+          id
+          name
+          price
+          description
+          category {
+            id
+            name
+            createdAt
+            updatedAt
+          }
+          productImages {
+            id
+            imageUrl
+            isMain
+          }
+        }
+      }
+    `,
   },
 };
