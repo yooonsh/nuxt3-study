@@ -28,8 +28,17 @@ export const client = {
           name
           price
           description
-          category
-          productImages
+          category {
+            id
+            name
+            createdAt
+            updatedAt
+          }
+          productImages {
+            imageUrl
+            isMain
+            id
+          }
         }
       }
     `,

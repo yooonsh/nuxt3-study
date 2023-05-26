@@ -116,70 +116,25 @@
 </template>
 
 <script lang="ts" setup>
+const { $api }: any = useNuxtApp();
+
 // const variables = {
 //   productId: 41,
 // };
 
-// const data = ref();
-// data.value = await $api.getOneProduct();
-
-interface categoryType {
-  id: number;
-  name: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
-interface imageType {
-  id: string;
-  imageUrl: string;
-  isMain: Boolean;
-}
-
-interface Product {
-  getOneProduct: {
-    id: string;
-    name: string;
-    price: number;
-    description: string;
-    category: categoryType;
-    productImages: imageType;
-  };
-}
-
-const query = gql`
-  query {
-    getOneProduct(productId: 41) {
-      id
-      name
-      price
-      description
-      category {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      productImages {
-        id
-        imageUrl
-        isMain
-      }
-    }
-  }
-`;
-
-const { data } = await useAsyncQuery<Product>(query);
+const data = ref();
+data.value = await $api.getOneProduct();
 
 const product = ref();
-product.value = data.value?.getOneProduct;
-console.log(product.value);
+product.value = data.value.value.getOneProduct;
+console.log(data.value.value.getOneProduct);
 
 async function edit(params: any) {
-  const { $api }: any = useNuxtApp();
-
   const variables = {
     productId: 41,
-    request: { name: "수정11", price: 1234, description: "수정11" },
+    name: "수정11",
+    price: 1234,
+    description: "수정11",
   };
 
   const { data: editData } = await $api.updateProduct(variables);

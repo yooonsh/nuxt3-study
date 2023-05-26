@@ -29,7 +29,9 @@ interface SignUpInput {
 }
 interface updateProduct {
   productId: number;
-  request: { name: string; price: number; description: string };
+  name: string;
+  price: number;
+  description: string;
 }
 
 export default class Apollo {
